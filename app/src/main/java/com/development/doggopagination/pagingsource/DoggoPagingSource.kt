@@ -18,7 +18,7 @@ class DoggoPagingSource() : PagingSource<Int, DoggoVO>() {
             val doggoList = response.body() ?: emptyList()
             LoadResult.Page(
                 doggoList, prevKey = if (page == 0) null else page - 1,
-                nextKey = if(page > 2) null else page + 1
+                nextKey = if(page >= 2) null else page + 1
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
