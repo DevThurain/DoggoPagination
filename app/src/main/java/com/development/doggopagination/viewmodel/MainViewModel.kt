@@ -11,20 +11,9 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    val doggoLiveData = MutableLiveData<List<DoggoVO>>()
-    val mTheDoggoModel = TheDoggoModelImpl()
-
-//    fun getDoggoList(){
-//        viewModelScope.launch {
-//            val respond = mTheDoggoModel.getDoggoList(page = 0, size = 12)
-//            if(respond.isSuccessful){
-//                doggoLiveData.value = respond.body()
-//            }
-//        }
-//    }
 
     private fun getDefaultPageConfig(): PagingConfig {
-        return PagingConfig(pageSize = 10, enablePlaceholders = false)
+        return PagingConfig(pageSize = 5,enablePlaceholders = false)
     }
 
     fun letDoggoImagesLiveData(pagingConfig: PagingConfig = getDefaultPageConfig()): LiveData<PagingData<DoggoVO>> {

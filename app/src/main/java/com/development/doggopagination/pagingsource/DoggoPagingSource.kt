@@ -14,11 +14,11 @@ class DoggoPagingSource() : PagingSource<Int, DoggoVO>() {
         val page = params.key ?: 0
         val doggoModel = TheDoggoModelImpl()
         return try {
-            val response = doggoModel.getDoggoList(page = page, size = 10)
+            val response = doggoModel.getDoggoList(page = page, size = 5)
             val doggoList = response.body() ?: emptyList()
             LoadResult.Page(
                 doggoList, prevKey = if (page == 0) null else page - 1,
-                nextKey = if (doggoList.isEmpty()) null else page + 1
+                nextKey = if(page > 2) null else page + 1
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
